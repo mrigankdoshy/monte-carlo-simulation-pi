@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h> 
-#define NUM_THREADS 100000         //number of threads
+#define NUM_THREADS 10000         //number of threads
 #define TOT_COUNT 10000055      //total number of iterations
 #define BILLION  1E9; 
 
