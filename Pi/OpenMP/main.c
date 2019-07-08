@@ -61,7 +61,6 @@ int main() {
     gettimeofday(&end, NULL);
     printf("Took %f seconds\n\n", end.tv_sec - start.tv_sec + (double) (end.tv_usec - start.tv_usec) / 1000000);
 
-    // This will print the result to 10 decimal places
     printf("Sequential: Estimated π = %.10Lf \n", sequentialPi);
     printf("Parallel: Estimated π = %.10Lf \n", parallelPi);
 
