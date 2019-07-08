@@ -26,7 +26,7 @@ long double SequentialPi(long long iterations) {
 
 long double ParallelPi(long long iterations) {
     long long numberInCircle = 0;
-	#pragma omp parallel num_threads(8)
+	#pragma omp parallel num_threads(4)
 	{
     /* Since rand() is not thread-safe, we generate a seed per thread and use rand_r() to 
 		retrieve a thread-safe random value. */
