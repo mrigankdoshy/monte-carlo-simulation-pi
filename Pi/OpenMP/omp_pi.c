@@ -4,18 +4,26 @@
 #include <omp.h>
 #include<time.h>
 
+
+static long iterations = 1000000;
+
 int main(int argc, char* argv[])
 {
-  int iterations = 100000;         //number of iterations per FOR loop
   double x, y, z;                  //x,y value for the random coordinate. z is used to check if x^2+y^2<=1            
-  int count=0;                     //count holds all the number of how many good coordinates
+  long count = 0;                     //count holds all the number of how many good coordinates
   double pi;                       //holds approx value of pi
-  int numthreads = 16;
-  int i;
+  int numthreads = 3;
+  long i;
+  double time;
 
-  #pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(numthreads)
+  time = omp_get_wtime();
+  #pragma omp parallel
   {
+    #pragma omp single
+          printf(" %d threads ",omp_get_num_threads());
+    
     srand48((int)time(NULL) ^ omp_get_thread_num());  //Give random() a seed value
+    #pragma omp for reduction(+:count) private(x,y,z)
     for (i = 0; i<iterations; ++i)         
     {
       x = (double)drand48();
@@ -27,8 +35,11 @@ int main(int argc, char* argv[])
     }
   } 
 
-  pi = ((double)count / (double)(iterations * numthreads)) * 4.0;
+  pi = ((double)count / (double)(iterations)) * 4.0;
   printf("Estimated Pi: %f\n", pi);
-  
+  printf("Time: %f", omp_get_wtime()-time);
   return 0;
 }
+
+// do stuff
+
