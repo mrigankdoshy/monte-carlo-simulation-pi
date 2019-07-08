@@ -47,7 +47,7 @@ long double ParallelPi(long long iterations) {
 int main() {
     struct timeval start, end;
 
-    long long iterations = 10000000;
+    long long iterations = 100000000;
 
     printf("\nTIMING SEQUENTIAL: \n");
     gettimeofday(&start, NULL);
