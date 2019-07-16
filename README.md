@@ -3,5 +3,13 @@ Contains the following:
   1. A serial approach to the estimation of Pi using the Monte Carlo Method (C++)
   2. A Multithreaded estimation of Pi based on the Monte Carlo Method (C++)
   3. Using matplotlib, plots the estimated value of Pi using Monte Carlo Method (Python)
+  4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
+  5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI (C)
   
-(Working on parallelization using OpenMP and MPI)
+### To use MPI
+
+The best performance is achieved when the number of nodes is equal to number of cores. E.g.:
+'''
+> mpiexec.exe -n 8 MPI_PIMonteCarlo.exe
+'''
+
