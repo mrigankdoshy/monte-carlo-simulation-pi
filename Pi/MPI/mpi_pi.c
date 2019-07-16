@@ -46,7 +46,7 @@ int main (int argc, char* argv[])
     if (rank == 0)
     {
         pi = 4 * d * sum;
-        printf("np = %2d;    Time = %f s;    PI = %0.10f\n", size, end-begin, pi);
+        printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", size, end-begin, pi);
     }
     
     error=MPI_Finalize();
