@@ -6,6 +6,13 @@ Contains the following:
   4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
   5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI (C)
   
+### To use OpenMP
+
+> /usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib main.c -o a
+
+> ./a
+
+
 ### To use MPI
 
 The best performance is achieved when the number of nodes is equal to number of cores. E.g.:
