@@ -42,7 +42,6 @@ int main (int argc, char* argv[])
     MPI_Barrier(MPI_COMM_WORLD);
     end = MPI_Wtime();
     
-    //Caculate and print PI
     if (rank == 0)
     {
         pi = 4 * d * sum;
