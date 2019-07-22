@@ -3,49 +3,50 @@
 #include <time.h>
 #include <mpi.h>
 
-#define N 1E8
-#define d 1E-8
+int main (int argc, char* argv[]) {
+    int pid, numberOfNodes, error, i, count = 0, sum = 0, iternations = 100000000;
+    double pi = 0.0, begin = 0.0, end = 0.0, x, y, z;
 
-int main (int argc, char* argv[])
-{
-    int rank, size, error, i, result = 0, sum = 0;
-    double pi = 0.0, begin = 0.0, end = 0.0, x, y;
-    
     error = MPI_Init(&argc, &argv);
     
-    //Get process ID
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    
-    //Get processes Number
-    MPI_Comm_size(MPI_COMM_WORLD, &size);
-    
-    //Synchronize all processes and get the begin time
+    /* 
+    	1. Get process ID
+    	2. Get processes number
+    	3. Synchonize all processes
+    	4. Get begin time
+    */
+    MPI_Comm_rank(MPI_COMM_WORLD, &pid);
+    MPI_Comm_size(MPI_COMM_WORLD, &numberOfNodes);
     MPI_Barrier(MPI_COMM_WORLD);
     begin = MPI_Wtime();
     
     srand((int)time(0));
     
-    //Each process will caculate a part of the sum
-    for (i = rank; i < N; i += size)
-    {
+    /* Each process caculates a part of the sum/result */
+    for (i = pid; i < iternations; i += numberOfNodes) {
         x = rand() / (RAND_MAX + 1.0);
         y = rand() / (RAND_MAX + 1.0);
+        z = ((x*x)+(y*y));
         
-        if(x*x + y*y < 1.0)
-            result++;
+        if(z < 1.0) 
+        {
+            count++;
+        }
     }
     
-    //Sum up all results
-    MPI_Reduce(&result, &sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-    
-    //Synchronize all processes and get the end time
+    /* 
+    	1. Sum all the results
+    	2. Synchonize all processes
+    	3. Get end time
+    */
+    MPI_Reduce(&count, &sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
     MPI_Barrier(MPI_COMM_WORLD);
     end = MPI_Wtime();
     
-    if (rank == 0)
+    if (pid == 0)
     {
-        pi = 4 * d * sum;
-        printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", size, end-begin, pi);
+        pi = 4 * 1E-8 * sum;
+        printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", numberOfNodes, end-begin, pi);
     }
     
     error=MPI_Finalize();
