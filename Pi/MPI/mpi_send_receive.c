@@ -52,8 +52,8 @@ int main(int argc, char* argv[]) {
 			counts[status.MPI_SOURCE] = temp;
 		}
 	}
-
 	end = MPI_Wtime();
+	
 	/* Ok, root has everyone's contributions; add them up and calculate Pi */
 	if (pid == 0)	
 	{      
