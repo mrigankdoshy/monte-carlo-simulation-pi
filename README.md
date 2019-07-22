@@ -4,7 +4,7 @@ Contains the following:
   2. A Multithreaded estimation of Pi based on the Monte Carlo Method (C++)
   3. Using matplotlib, plots the estimated value of Pi using Monte Carlo Method (Python)
   4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
-  5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI (C)
+  5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI: Reduction & Send/Receive (C)
   
 ### To use OpenMP
 
@@ -23,4 +23,5 @@ The best performance is achieved when the number of nodes is equal to number of 
 
 
 You can change the number '4' to equal the number of cores you have.
+You can also change the file name to whichever MPI method you want to run.
 
