@@ -2,46 +2,40 @@
 #include <stdlib.h>
 #include <math.h>
 #include <mpi.h>
-/* totally arbitrary seed for srand */
-#define SEED 314159
 
-int main(int argc, char* argv[])
-{
-	long niter = 1000000;			
-	int myid;							//hold's process's rank id
-	int numnodes;
-	double x,y;							//x,y value for the random coordinate
-	int i, count=0;							//Count holds all the number of how many good coordinates
-	double z;							//Used to check if x^2+y^2<=1
-	double pi;							//holds approx value of pi
+#define SEED 326172
+
+int main(int argc, char* argv[]) {
+	long iterations = 1000000;			
+	int pid, numberOfNodes, i, error, count=0;
+	double x, y, z, pi, begin, end;														
+	
 	MPI_Status status;
 
 
-	MPI_Init(&argc, &argv);						//Start MPI
-	MPI_Comm_rank(MPI_COMM_WORLD, &myid);				//get rank of node's process
-	MPI_Comm_size(MPI_COMM_WORLD, &numnodes);
+	error = MPI_Init(&argc, &argv);						
+	MPI_Comm_rank(MPI_COMM_WORLD, &pid);				
+	MPI_Comm_size(MPI_COMM_WORLD, &numberOfNodes);
+	begin = MPI_Wtime();
 
-	int counts[numnodes];						// contains all processes circle point counts
-	int temp;							// temp buffer to store incoming count messages on node 0
+	int counts[numberOfNodes];				// contains all processes circle point counts
+	int temp;								// temp buffer to store incoming count messages on node 0
 
-	/* Everyone needs a different seed or they'll get the same "random" sequence */
-	srand(SEED+myid);							
+	srand(SEED + pid);							
 
-	/* Have everyone do the work, then have one node coordinate results */
-	for(i = 0; i < niter; i++)
-	{
-		x= ((double)rand())/RAND_MAX;			//gets a random x coordinate
-		y =((double)rand())/RAND_MAX;			//gets a random y coordinate
-		z = x*x+y*y;					//Checks to see if number in inside unit circle
-		if (z<=1)
+	for(i = 0; i < iterations; i++) {
+		x= ((double)rand()) / RAND_MAX;			
+		y =((double)rand()) / RAND_MAX;			
+		z = x*x + y*y;		
+
+		if (z <= 1)
 		{
-			count++;				//if it is, consider it a valid random point
+			count++;				
 		}
 	
 	}
-//	printf("I am node %d, my count was %d\n", myid, count);
 
-	if(myid != 0) /* Everyone sends their contribution to node 0 */
+	if(pid != 0) /* Everyone sends their contribution to node 0 */
 	{
 		MPI_Send(&count, 1, MPI_INT, 0, 1, MPI_COMM_WORLD);
 	}
@@ -50,7 +44,7 @@ int main(int argc, char* argv[])
 	{
 		/* Put root's count in place */
 		counts[0] = count;
-		for(i = 0; i < numnodes-1; i++)
+		for(i = 0; i < numberOfNodes-1; i++)
 		{
 			/* We don't know who will be done first, so we need to post an MPI_ANY_SOURCE receieve */
 			MPI_Recv(&temp, 1, MPI_INT, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
@@ -59,21 +53,22 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	end = MPI_Wtime();
 	/* Ok, root has everyone's contributions; add them up and calculate Pi */
-	if (myid == 0)	
+	if (pid == 0)	
 	{      
-		int final = 0;
-		for(i = 0; i<numnodes; ++i)
+		int sum = 0;
+		for(i = 0; i < numberOfNodes; ++i)
 		{
-			final += counts[i];
+			sum += counts[i];
 		}
 
-		int final_iters = numnodes*niter;
+		int total_iterations = numberOfNodes * iterations;
 
-		pi = ((double)final/(double)final_iters)*4.0;	//p = 4(m/n)
-		printf("%d nodes over %d iterations calculated Pi as: %f\n", numnodes, final_iters, pi);	//Print the calculated value of pi
+		pi = ((double)sum / (double)total_iterations) * 4.0;	
+		printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", numberOfNodes, end-begin, pi);	
 	}
 
-	MPI_Finalize();	//Close the MPI instance
+	error = MPI_Finalize();
 	return 0;
 }
