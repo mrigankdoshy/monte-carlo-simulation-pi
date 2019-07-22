@@ -28,7 +28,7 @@ int main (int argc, char* argv[]) {
         y = rand() / (RAND_MAX + 1.0);
         z = ((x*x)+(y*y));
         
-        if(z < 1.0) 
+        if(z <= 1.0) 
         {
             count++;
         }
