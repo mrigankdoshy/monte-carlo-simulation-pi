@@ -7,8 +7,8 @@
   ### 2. A Multithreaded estimation of Pi based on the Monte Carlo Method (C++)
   
   ### 3. Using matplotlib, plots the estimated value of Pi using Monte Carlo Method (Python)
-    #### 10000 Iterations
-    ![demo](Pi/Graphs/10000.png)
+   #### 10000 Iterations
+   ![demo](Pi/Graphs/10000.png)
   
   #### 100000 Iterations
   ![demo](Pi/Graphs/100000.png)
