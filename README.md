@@ -12,6 +12,8 @@
   
   100000 Iterations
   ![demo](Pi/Graphs/100000.png)
+  
+  10000 Iterations Zoomed
   ![demo](Pi/Graphs/100000-2.png)
   
   ### 4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
