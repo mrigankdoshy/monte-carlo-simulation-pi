@@ -1,21 +1,21 @@
 # Monte Carlo Simulation for Pi
 #### Contains the following: ####
-  ## 1. A serial approach to the estimation of Pi using the Monte Carlo Method (C++)
+  ### 1. A serial approach to the estimation of Pi using the Monte Carlo Method (C++)
   ![demo](Pi/Graphs/Sequential%20-%20Iterations%20VS%20Pi.png)
   ![demo](Pi/Graphs/Sequential%20-%20Iterations%20VS%20Time.png)
   
-  ## 2. A Multithreaded estimation of Pi based on the Monte Carlo Method (C++)
+  ### 2. A Multithreaded estimation of Pi based on the Monte Carlo Method (C++)
   
-  ## 3. Using matplotlib, plots the estimated value of Pi using Monte Carlo Method (Python)
+  ### 3. Using matplotlib, plots the estimated value of Pi using Monte Carlo Method (Python)
   ![demo](pi/Graphs/10000.png)
   ![demo](pi/Graphs/100000.png)
   ![demo](pi/Graphs/100000-2.png)
   
-  ## 4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
+  ### 4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
   ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Time.png)
   ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Pi.png)
   
-  ## 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI: Reduction & Send/Receive (C)
+  ### 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI: Reduction & Send/Receive (C)
   
 ### To use OpenMP
 
