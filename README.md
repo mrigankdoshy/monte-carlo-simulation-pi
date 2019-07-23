@@ -8,18 +8,18 @@ Contains the following:
   
 ### To use OpenMP
 
-> /usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib main.c -o a
+`/usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib main.c -o a`
 
-> ./a
+`./a`
 
 
 ### To use MPI
 
 The best performance is achieved when the number of nodes is equal to number of cores. E.g.:
 
-> $HOME/opt/usr/local/bin/mpicc -o pi ./mpi_pi.c
+`$HOME/opt/usr/local/bin/mpicc -o pi ./mpi_pi.c`
 
-> $HOME/opt/usr/local/bin/mpirun -np 4 ./pi 
+`$HOME/opt/usr/local/bin/mpirun -np 4 ./pi`
 
 
 You can change the number '4' to equal the number of cores you have.
