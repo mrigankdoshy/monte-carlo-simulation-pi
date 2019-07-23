@@ -23,16 +23,16 @@
   ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Time.png)
   ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Pi.png)
   
-  
-  ### 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI: Reduction & Send/Receive (C)
-  
-  
-### To use OpenMP
+  ### To use OpenMP
 
 > /usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib main.c -o a
 
 > ./a
 
+  
+  
+  ### 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI: Reduction & Send/Receive (C)
+  
 
 ### To use MPI
 
