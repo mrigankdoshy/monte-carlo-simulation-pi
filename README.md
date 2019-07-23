@@ -1,5 +1,5 @@
 # Monte Carlo Simulation for Pi
-#### Contains the following:####
+#### Contains the following: ####
   ## 1. A serial approach to the estimation of Pi using the Monte Carlo Method (C++)
   ![demo](Pi/Graphs/Sequential%20-%20Iterations%20VS%20Pi.png)
   ![demo](Pi/Graphs/Sequential%20-%20Iterations%20VS%20Time.png)
