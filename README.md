@@ -37,9 +37,11 @@
   
   ![demo](Pi/MPI/Pictures/mpi_pi.png)
   
+  
   MPI Reduction
   
   ![demo](Pi/MPI/Pictures/mpi_reduction.png)
+  
   
   MPI Send & Receive
   
