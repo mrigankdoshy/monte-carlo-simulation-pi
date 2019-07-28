@@ -37,12 +37,12 @@ int main(int argc, char* argv[]) {
 	MPI_Reduce(&count, &sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 	end = MPI_Wtime();
 
-	int total_iterations = iterations * numberOfNodes;
+	long total_iterations = iterations * numberOfNodes;
 
 	if (pid == 0)								//if root process
 	{      
 		pi = ((double)sum / (double)total_iterations) * 4.0;	
-		printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", numberOfNodes, end-begin, pi);			
+		printf("Processors = %2d;    Iterations = %ld    Time = %f s;    PI = %0.10f\n", numberOfNodes, total_iterations, end-begin, pi);			
 	}
 	
 	error = MPI_Finalize();								//Close the MPI instance
