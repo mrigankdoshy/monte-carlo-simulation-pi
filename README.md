@@ -34,12 +34,15 @@
   ### 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI (C)
   
   MPI
+  
   ![demo](Pi/MPI/Pictures/mpi_pi.png)
   
   MPI Reduction
+  
   ![demo](Pi/MPI/Pictures/mpi_reduction.png)
   
   MPI Send & Receive
+  
   ![demo](Pi/MPI/Pictures/mpi_send_receive.png)
 
 #### To use MPI
@@ -49,3 +52,4 @@ The best performance is achieved when the number of nodes is equal to number of 
 > $HOME/opt/usr/local/bin/mpicc -o pi ./mpi_pi.c
 
 > $HOME/opt/usr/local/bin/mpirun -np 4 ./pi
+
