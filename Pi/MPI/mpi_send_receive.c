@@ -6,7 +6,7 @@
 #define SEED 326172
 
 int main(int argc, char* argv[]) {
-	long iterations = 1000000;			
+	long iterations = 100000000;			
 	int pid, numberOfNodes, i, error, count=0;
 	double x, y, z, pi, begin, end;														
 	
@@ -52,8 +52,9 @@ int main(int argc, char* argv[]) {
 			counts[status.MPI_SOURCE] = temp;
 		}
 	}
+
 	end = MPI_Wtime();
-	
+
 	/* Ok, root has everyone's contributions; add them up and calculate Pi */
 	if (pid == 0)	
 	{      
@@ -63,10 +64,9 @@ int main(int argc, char* argv[]) {
 			sum += counts[i];
 		}
 
-		int total_iterations = numberOfNodes * iterations;
-
+		long total_iterations = numberOfNodes * iterations;
 		pi = ((double)sum / (double)total_iterations) * 4.0;	
-		printf("Processors = %2d;    Time = %f s;    PI = %0.10f\n", numberOfNodes, end-begin, pi);	
+		printf("Processors = %2d;    Iterations = %ld    Time = %f s;    PI = %0.10f\n", numberOfNodes, total_iterations, end-begin, pi);
 	}
 
 	error = MPI_Finalize();
