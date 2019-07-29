@@ -20,19 +20,30 @@
   
   
   ### 4. A parallel computing version that estimates Pi using the Monte Carlo Method in OpenMP (C)
-  ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Time.png)
-  ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Pi.png)
   
   #### To use OpenMP
 
 > /usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib main.c -o a
 
 > ./a
-
+  
+  ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Time.png)
+  ![demo](Pi/Graphs/Parallel%20-%20Threads%20VS%20Pi.png)
+  
+  
   
   
   ### 5. A parallel computing version that estimates Pi using the Monte Carlo Method in MPI (C)
   
+  #### To use MPI
+
+The best performance is achieved when the number of nodes is equal to number of cores. E.g.:
+
+> $HOME/opt/usr/local/bin/mpicc -o pi ./mpi_pi.c
+
+> $HOME/opt/usr/local/bin/mpirun -np 4 ./pi
+
+
   MPI
   
   ![demo](Pi/MPI/Pictures/mpi_pi.png)
@@ -46,12 +57,4 @@
   MPI Send & Receive
   
   ![demo](Pi/MPI/Pictures/mpi_send_receive.png)
-
-#### To use MPI
-
-The best performance is achieved when the number of nodes is equal to number of cores. E.g.:
-
-> $HOME/opt/usr/local/bin/mpicc -o pi ./mpi_pi.c
-
-> $HOME/opt/usr/local/bin/mpirun -np 4 ./pi
 
